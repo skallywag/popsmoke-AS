@@ -1,0 +1,26 @@
+@import "../../themes/themes.module.scss";
+
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $primaryBlue;
+  height: 56px;
+  padding: 8px 20px;
+  box-shadow: -1px 5px 6px 0px rgba(26, 26, 26, 0.77);
+  .linkContainer {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+  }
+  @media screen and (min-width: 768px) {
+    .hamburger {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .linkContainer {
+      display: none;
+    }
+  }
+}
