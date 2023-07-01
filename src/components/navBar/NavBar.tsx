@@ -6,18 +6,29 @@ import logo from "../../assets/target.png";
 import { Button, Box } from "@chakra-ui/react";
 import { router } from "../../router";
 import { setLogin } from "../../state/appSlice";
+import { RxHamburgerMenu } from "react-icons/rx";
 import { Image } from "@chakra-ui/react";
 import { Link } from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react";
+import NavDrawer from "./navDrawer/NavDrawer";
 import "./NavBar.scss";
 
 interface NavBarProps {}
 
 const NavBar: React.FC<NavBarProps> = () => {
   const { isLoggedIn } = useAppSelector((state: RootState) => state.setLogin);
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const loginDispatch = useAppDispatch();
 
   return (
     <Box className="navBar">
+      <NavDrawer isOpen={isOpen} onClose={onClose} />
+      <RxHamburgerMenu
+        size={30}
+        className="hamburger"
+        color={themes.primaryOrange}
+        onClick={onOpen}
+      />
       <Box className="linkContainer">
         <Box
           display="flex"
