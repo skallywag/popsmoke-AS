@@ -3,13 +3,18 @@ import themes from "../../themes/themes.module.scss";
 import { useAppDispatch, useAppSelector } from "../../state/state.hooks";
 import { RootState } from "../../state/store";
 import logo from "../../assets/target.png";
-import { Button, Box } from "@chakra-ui/react";
+import {} from "@chakra-ui/react";
 import { router } from "../../router";
 import { setLogin } from "../../state/appSlice";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { Image } from "@chakra-ui/react";
-import { Link } from "@chakra-ui/react";
-import { useDisclosure } from "@chakra-ui/react";
+import {
+  Image,
+  Link,
+  Text,
+  useDisclosure,
+  Button,
+  Box,
+} from "@chakra-ui/react";
 import NavDrawer from "./navDrawer/NavDrawer";
 import "./NavBar.scss";
 
@@ -38,7 +43,9 @@ const NavBar: React.FC<NavBarProps> = () => {
           onClick={() => router.navigate("/").catch(console.error)}
         >
           <Image borderRadius="full" src={logo} height={30} width={30} />
-          <Box style={{ fontSize: "20px", color: themes.white }}>Pop Smoke</Box>
+          <Text fontSize={20} color={themes.white}>
+            Pop Smoke
+          </Text>
         </Box>
         <Link
           onClick={() => router.navigate("/").catch(console.error)}
