@@ -6,6 +6,7 @@ $primaryGray: #444c4f;
 $secondaryGray: #8d919c;
 $primaryGreen: green;
 $white: #ffffff;
+$accentError: #ff0000;
 
 :export {
   primaryRed: $primaryRed;
@@ -15,4 +16,5 @@ $white: #ffffff;
   primaryGray: $primaryGray;
   primaryGreen: $primaryGreen;
   white: $white;
+  accentError: $accentError;
 }

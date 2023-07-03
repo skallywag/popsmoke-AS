@@ -7,6 +7,8 @@ import {
   Input,
   InputRightElement,
   InputGroup,
+  Text,
+  Highlight,
 } from "@chakra-ui/react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useAppDispatch } from "../../state/state.hooks";
@@ -97,10 +99,19 @@ const LoginPage: React.FC = () => {
               }
             />
           </InputGroup>
-          <Button width={"100%"} type="submit">
+          <Button mb={4} width={"100%"} type="submit">
             Login
           </Button>
         </form>
+        <Text color={themes.white}>
+          Dont have an Account?{" "}
+          <span
+            onClick={() => router.navigate("/signup").catch(console.error)}
+            style={{ color: themes.primaryOrange, cursor: "pointer" }}
+          >
+            Enlist Now
+          </span>
+        </Text>
       </Box>
     </Box>
   );
