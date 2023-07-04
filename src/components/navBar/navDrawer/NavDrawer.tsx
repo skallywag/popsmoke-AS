@@ -30,10 +30,20 @@ const NavDrawer: React.FC<NavDrawerProps> = ({ isOpen, onClose }) => {
             onClick={onClose}
           />
           <Box pt={20} display={"flex"} flexDirection={"column"}>
-            <Link fontSize={28} mb={4} color={themes.white}>
+            <Link
+              onClick={() => router.navigate("/").catch(console.error)}
+              fontSize={28}
+              mb={4}
+              color={themes.white}
+            >
               Home
             </Link>
-            <Link fontSize={28} mb={4} color={themes.white}>
+            <Link
+              onClick={() => router.navigate("/for-sale").catch(console.error)}
+              fontSize={28}
+              mb={4}
+              color={themes.white}
+            >
               Black Market
             </Link>
           </Box>
