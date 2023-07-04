@@ -39,15 +39,13 @@ const LoginPage: React.FC = () => {
       localStorage.setItem("user", JSON.stringify(response));
       loginDispatch(setLogin(true));
       router.navigate("/").catch(console.error);
-      toast("ssss");
     } catch (error) {
-      console.error(error);
       toast(error.response.data);
     }
   };
 
   return (
-    <Box className="loginPage page">
+    <Box className="loginPage">
       <Box className="loginContainer">
         <h1 style={{ marginBottom: "20px", color: themes.primaryOrange }}>
           Login
