@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import themes from "../../themes/themes.module.scss";
+import { ToastContainer, toast, useToast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import {
   Button,
@@ -15,6 +17,7 @@ import { useAppDispatch } from "../../state/state.hooks";
 import { router } from "../../router";
 import { setLogin } from "../../state/appSlice";
 import "./LoginPage.scss";
+import { userService } from "../../api/userService/userService";
 
 type FormData = {
   email: string;
@@ -30,12 +33,16 @@ const LoginPage: React.FC = () => {
     formState: { errors },
   } = useForm<FormData>();
 
-  const onSubmit: SubmitHandler<FormData> = async () => {
+  const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
     try {
+      const response = await userService.userLogin(data);
+      localStorage.setItem("user", JSON.stringify(response));
       loginDispatch(setLogin(true));
-      router.navigate("/");
+      router.navigate("/").catch(console.error);
+      toast("ssss");
     } catch (error) {
       console.error(error);
+      toast(error.response.data);
     }
   };
 

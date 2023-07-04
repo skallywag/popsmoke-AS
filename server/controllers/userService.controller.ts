@@ -3,7 +3,7 @@ import * as bcrypt from "bcrypt";
 
 export const UserController = {
   userLogin: async (req: any, res: any) => {
-    const { email, password } = req;
+    const { email, password } = req.body;
 
     try {
       const response = await db.sequelize.query(`

@@ -68,7 +68,9 @@ const NavBar: React.FC<NavBarProps> = () => {
               loginDispatch(setLogin(false));
               router.navigate("/").catch(console.error);
             }}
-          />
+          >
+            Logout
+          </Button>
         ) : (
           <Button
             width={20}
