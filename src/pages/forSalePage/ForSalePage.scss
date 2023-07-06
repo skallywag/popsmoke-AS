@@ -1,0 +1,24 @@
+@import "../../themes/themes.module.scss";
+
+.forSalePage {
+  .filterWrapper {
+    padding: 0 24px;
+  }
+  .filterContainer {
+    background-color: $primaryBlue;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(93px, 1fr));
+    justify-items: center;
+    padding: 24px;
+    gap: 40px;
+  }
+  .filterItem {
+    display: grid;
+    justify-items: center;
+    gap: 10px;
+    .filterIcon {
+      color: $primaryOrange;
+      font-size: 38px;
+    }
+  }
+}
