@@ -21,4 +21,11 @@
       font-size: 38px;
     }
   }
+  .productWrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(134px, 1fr));
+    gap: 24px;
+    padding: 24px;
+    background-color: $primaryGray;
+  }
 }

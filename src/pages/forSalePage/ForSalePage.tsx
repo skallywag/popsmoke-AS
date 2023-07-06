@@ -3,14 +3,18 @@ import { useState } from "react";
 import { GiPistolGun } from "react-icons/gi";
 import { FaHeadphones } from "react-icons/fa";
 import { IoMdAddCircleOutline } from "react-icons/io";
-import { BiFilterAlt } from "react-icons/bi";
+import { router } from "../../router";
+import { BallTriangle } from "react-loader-spinner";
+import { fakeShopData } from "../../@types/fakeShopData";
 import themes from "../../themes/themes.module.scss";
+import ForSaleCard from "../../components/forSaleCard/ForSaleCard";
 import { GiWinchesterRifle } from "react-icons/gi";
 import { GiBackpack } from "react-icons/gi";
 import { Box, Input, Text } from "@chakra-ui/react";
 import "./ForSalePage.scss";
 
 const LoginPage: React.FC = () => {
+  const [products, setProducts] = useState(fakeShopData);
   const [searchValue, setSearchValue] = useState<string>("");
 
   return (
@@ -55,6 +59,35 @@ const LoginPage: React.FC = () => {
           <GiPistolGun className="filterIcon" />
           <Text color={themes.white}>Pistols</Text>
         </Box>
+      </Box>
+      <Box className="productWrapper">
+        {products.length === 0 ? (
+          <BallTriangle
+            height={60}
+            width={60}
+            radius={5}
+            color={themes.primaryGreen}
+            ariaLabel="ball-triangle-loading"
+            wrapperStyle={{ justifyContent: "center" }}
+            visible={true}
+          />
+        ) : (
+          products.map((item) => {
+            return (
+              <ForSaleCard
+                key={item.id}
+                id={item.id}
+                imageUrl={item.imageUrl}
+                description={item.description}
+                price={item.price}
+                title={item.title}
+                onViewProduct={() => {
+                  router.navigate(`/product-details/?`).catch(console.error);
+                }}
+              />
+            );
+          })
+        )}
       </Box>
     </Box>
   );
