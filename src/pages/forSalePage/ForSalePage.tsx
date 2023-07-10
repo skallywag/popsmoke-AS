@@ -25,7 +25,13 @@ const LoginPage: React.FC = () => {
         </Text>
         <Box mb={4} display={"flex"} alignItems={"center"} gap={1}>
           <IoMdAddCircleOutline color={themes.primaryOrange} size={32} />
-          <Text>Create Listing</Text>
+          <Text
+            onClick={() =>
+              router.navigate("/create-listing").catch(console.error)
+            }
+          >
+            Create Listing
+          </Text>
         </Box>
         <Input
           mb={6}
