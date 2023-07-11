@@ -31,18 +31,24 @@ const NavDrawer: React.FC<NavDrawerProps> = ({ isOpen, onClose }) => {
           />
           <Box pt={20} display={"flex"} flexDirection={"column"}>
             <Link
-              onClick={() => router.navigate("/").catch(console.error)}
-              fontSize={28}
               mb={4}
+              fontSize={28}
               color={themes.white}
+              onClick={() => {
+                router.navigate("/").catch(console.error);
+                onClose();
+              }}
             >
               Home
             </Link>
             <Link
-              onClick={() => router.navigate("/for-sale").catch(console.error)}
-              fontSize={28}
               mb={4}
+              fontSize={28}
               color={themes.white}
+              onClick={() => {
+                router.navigate("/for-sale").catch(console.error);
+                onClose();
+              }}
             >
               Black Market
             </Link>

@@ -3,7 +3,6 @@ import themes from "../../themes/themes.module.scss";
 import { useAppDispatch, useAppSelector } from "../../state/state.hooks";
 import { RootState } from "../../state/store";
 import logo from "../../assets/target.png";
-import {} from "@chakra-ui/react";
 import { router } from "../../router";
 import { setLogin } from "../../state/appSlice";
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -30,16 +29,16 @@ const NavBar: React.FC<NavBarProps> = () => {
       <NavDrawer isOpen={isOpen} onClose={onClose} />
       <RxHamburgerMenu
         size={30}
+        onClick={onOpen}
         className="hamburger"
         color={themes.primaryOrange}
-        onClick={onOpen}
       />
       <Box className="linkContainer">
         <Box
-          display="flex"
           gap={8}
-          alignItems="center"
+          display="flex"
           cursor="pointer"
+          alignItems="center"
           onClick={() => router.navigate("/").catch(console.error)}
         >
           <Image borderRadius="full" src={logo} height={30} width={30} />
@@ -48,14 +47,14 @@ const NavBar: React.FC<NavBarProps> = () => {
           </Text>
         </Box>
         <Link
-          onClick={() => router.navigate("/").catch(console.error)}
           style={{ color: themes.primaryOrange }}
+          onClick={() => router.navigate("/").catch(console.error)}
         >
           Home
         </Link>
         <Link
-          onClick={() => router.navigate("/product").catch(console.error)}
           style={{ color: themes.primaryOrange }}
+          onClick={() => router.navigate("/product").catch(console.error)}
         >
           Black Market
         </Link>
