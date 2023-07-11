@@ -21,4 +21,28 @@ declare namespace Api {
       }
     }
   }
+  export namespace Product {
+    export namespace Req {
+      export interface Create {
+        title: string;
+        description: string;
+        category: string;
+        salePrice: number;
+        condition: string;
+        contactMethod: string;
+        firstLastName: string;
+        email: string;
+        phoneNumber: number;
+        acceptsSMS: boolean;
+        zipCode: number;
+        city: string;
+        state: string;
+      }
+    }
+    export namespace Res {
+      export interface Create {
+        id: number;
+      }
+    }
+  }
 }

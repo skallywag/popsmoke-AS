@@ -12,7 +12,8 @@ dist
 dist-ssr
 *.local
 fakeShopData.ts
-
+api.d.ts
+@types
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

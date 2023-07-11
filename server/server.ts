@@ -1,5 +1,6 @@
 import express, { Application } from "express";
 import userServiceRoutes from "./routes/userService.routes";
+import productServiceRoutes from "./routes/productService.routes";
 import cors from "cors";
 
 const corsOptions = {
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 userServiceRoutes(app);
+productServiceRoutes(app);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
