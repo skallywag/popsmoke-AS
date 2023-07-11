@@ -10,7 +10,8 @@ import {
   Stack,
   Button,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { toast } from "react-toastify";
+import { productService } from "../../api/productService/productService";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import themes from "../../themes/themes.module.scss";
 import "./CreateListingPage.scss";
@@ -39,8 +40,15 @@ const CreateListingPage: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
+
   const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
-    console.log(data);
+    try {
+      const response = await productService.createProduct(data);
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+      toast(error.response.data);
+    }
   };
 
   return (

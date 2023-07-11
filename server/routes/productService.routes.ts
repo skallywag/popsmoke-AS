@@ -6,7 +6,7 @@ const productRoutes = (app: any) => {
 
   router.post("/create", product.createProduct);
 
-  app.use("/api/prodcut", router);
+  app.use("/api/product", router);
 };
 
 export default productRoutes;
