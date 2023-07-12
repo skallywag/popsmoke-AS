@@ -15,6 +15,7 @@ export const UserController = {
       if (response[1].rowCount === 1) {
         if (bcrypt.compareSync(password, response[0][0].password)) {
           const operator = {
+            userId: response[0][0].id,
             firstName: response[0][0].firstname,
             userName: response[0][0].username,
           };

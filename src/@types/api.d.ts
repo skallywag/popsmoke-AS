@@ -24,6 +24,7 @@ declare namespace Api {
   export namespace Product {
     export namespace Req {
       export interface Create {
+        userId: number;
         title: string;
         description: string;
         category: string;

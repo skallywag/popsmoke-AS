@@ -17,6 +17,7 @@ import themes from "../../themes/themes.module.scss";
 import "./CreateListingPage.scss";
 
 type FormData = {
+  userId: number;
   title: string;
   description: string;
   category: string;
@@ -33,13 +34,15 @@ type FormData = {
 };
 
 const CreateListingPage: React.FC = () => {
+  const loggedUser = JSON.parse(localStorage.getItem("user"));
+  const userId = loggedUser.userId;
+
   const {
     register,
-    setValue,
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<FormData>({ defaultValues: { userId } });
 
   const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
     try {

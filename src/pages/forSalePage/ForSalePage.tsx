@@ -3,6 +3,8 @@ import { useState } from "react";
 import { GiPistolGun } from "react-icons/gi";
 import { FaHeadphones } from "react-icons/fa";
 import { IoMdAddCircleOutline } from "react-icons/io";
+import { useAppSelector } from "../../state/state.hooks";
+import { RootState } from "../../state/store";
 import { router } from "../../router";
 import { BallTriangle } from "react-loader-spinner";
 import { fakeShopData } from "../../@types/fakeShopData";
@@ -16,6 +18,7 @@ import "./ForSalePage.scss";
 const LoginPage: React.FC = () => {
   const [products, setProducts] = useState(fakeShopData);
   const [searchValue, setSearchValue] = useState<string>("");
+  const { isLoggedIn } = useAppSelector((state: RootState) => state.setLogin);
 
   return (
     <Box className="forSalePage">
@@ -24,14 +27,16 @@ const LoginPage: React.FC = () => {
           Black Market
         </Text>
         <Box mb={4} display={"flex"} alignItems={"center"} gap={1}>
-          <IoMdAddCircleOutline color={themes.primaryOrange} size={32} />
-          <Text
+          <IoMdAddCircleOutline
+            color={themes.primaryOrange}
+            size={32}
             onClick={() =>
-              router.navigate("/create-listing").catch(console.error)
+              isLoggedIn
+                ? router.navigate("/create-listing").catch(console.error)
+                : router.navigate("/login").catch(console.error)
             }
-          >
-            Create Listing
-          </Text>
+          />
+          <Text>Create Listing</Text>
         </Box>
         <Input
           mb={6}
