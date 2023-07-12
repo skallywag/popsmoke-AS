@@ -10,4 +10,11 @@ export const productService = {
     );
     return response.data;
   },
+
+  getProducts: async () => {
+    const response = await axios.get(
+      `http://localhost:8080/api/product/products`
+    );
+    return response.data;
+  },
 };

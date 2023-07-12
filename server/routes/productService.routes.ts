@@ -5,6 +5,7 @@ const productRoutes = (app: any) => {
   const router = require("express").Router();
 
   router.post("/create", product.createProduct);
+  router.get("/products", product.getProducts);
 
   app.use("/api/product", router);
 };

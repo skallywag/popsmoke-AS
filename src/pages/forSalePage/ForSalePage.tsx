@@ -1,24 +1,36 @@
 import { BiTargetLock } from "react-icons/bi";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { GiPistolGun } from "react-icons/gi";
 import { FaHeadphones } from "react-icons/fa";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { useAppSelector } from "../../state/state.hooks";
 import { RootState } from "../../state/store";
 import { router } from "../../router";
+import { toast } from "react-toastify";
 import { BallTriangle } from "react-loader-spinner";
-import { fakeShopData } from "../../@types/fakeShopData";
 import themes from "../../themes/themes.module.scss";
 import ForSaleCard from "../../components/forSaleCard/ForSaleCard";
 import { GiWinchesterRifle } from "react-icons/gi";
 import { GiBackpack } from "react-icons/gi";
 import { Box, Input, Text } from "@chakra-ui/react";
 import "./ForSalePage.scss";
+import { productService } from "../../api/productService/productService";
 
 const LoginPage: React.FC = () => {
-  const [products, setProducts] = useState(fakeShopData);
+  const [products, setProducts] = useState([]);
   const [searchValue, setSearchValue] = useState<string>("");
   const { isLoggedIn } = useAppSelector((state: RootState) => state.setLogin);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await productService.getProducts();
+        setProducts(response);
+      } catch (error) {
+        toast(error.data);
+      }
+    })();
+  }, []);
 
   return (
     <Box className="forSalePage">
@@ -90,7 +102,7 @@ const LoginPage: React.FC = () => {
                 id={item.id}
                 imageUrl={item.imageUrl}
                 description={item.description}
-                price={item.price}
+                salePrice={item.saleprice}
                 title={item.title}
                 onViewProduct={() => {
                   router.navigate(`/product-details/?`).catch(console.error);

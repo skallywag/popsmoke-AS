@@ -5,7 +5,7 @@ import "./ForSaleCard.scss";
 interface ForSaleCardProps {
   id: number;
   imageUrl: string;
-  price: string | number;
+  salePrice: string | number;
   title: string;
   description: string;
   onViewProduct: () => void;
@@ -15,10 +15,10 @@ const saleImg =
 
 const ForSaleCard: React.FC<ForSaleCardProps> = (props) => {
   return (
-    <Box className="forSaleCard" key={props.id} onClick={props.onViewProduct}>
+    <Box className="forSaleCard" onClick={props.onViewProduct}>
       <Image borderRadius={"10px"} height="auto" width="100%" src={saleImg} />
       <Text fontSize={17} color={themes.white}>
-        ${props.price}
+        ${props.salePrice}
       </Text>
       <Text mb={2} fontSize={15} color={themes.white}>
         {props.title}
