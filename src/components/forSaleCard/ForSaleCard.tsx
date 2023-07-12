@@ -3,7 +3,6 @@ import themes from "../../themes/themes.module.scss";
 import "./ForSaleCard.scss";
 
 interface ForSaleCardProps {
-  id: number;
   imageUrl: string;
   salePrice: string | number;
   title: string;

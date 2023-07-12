@@ -7,6 +7,7 @@ import { useAppSelector } from "../../state/state.hooks";
 import { RootState } from "../../state/store";
 import { router } from "../../router";
 import { toast } from "react-toastify";
+import qs from "query-string";
 import { BallTriangle } from "react-loader-spinner";
 import themes from "../../themes/themes.module.scss";
 import ForSaleCard from "../../components/forSaleCard/ForSaleCard";
@@ -96,16 +97,20 @@ const LoginPage: React.FC = () => {
           />
         ) : (
           products.map((item) => {
+            const query = qs.stringify({
+              product: item.id,
+            });
             return (
               <ForSaleCard
                 key={item.id}
-                id={item.id}
                 imageUrl={item.imageUrl}
                 description={item.description}
                 salePrice={item.saleprice}
                 title={item.title}
                 onViewProduct={() => {
-                  router.navigate(`/product-details/?`).catch(console.error);
+                  router
+                    .navigate(`/product-details/?${query}`)
+                    .catch(console.error);
                 }}
               />
             );
