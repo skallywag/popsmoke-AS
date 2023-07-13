@@ -1,0 +1,12 @@
+.productDetailsPage {
+  .pageWrapper {
+    padding: 0 24px 30px;
+  }
+  .productActions {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 14px 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid darkorange;
+  }
+}
