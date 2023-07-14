@@ -1,11 +1,28 @@
 import { BsHeartPulseFill } from "react-icons/bs";
 import { BsFillShareFill } from "react-icons/bs";
+import { useState, useEffect } from "react";
 import { GiBleedingEye } from "react-icons/gi";
+import { productService } from "../../api/productService/productService";
 import themes from "../../themes/themes.module.scss";
 import { Box, Button, Text } from "@chakra-ui/react";
+import qs from "query-string";
 import "./ProductDetailsPage.scss";
 
 const ProductDetailsPage: React.FC = () => {
+  const [product, setProduct] = useState();
+  const { productId } = qs.parse(location.search);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await productService.getProductById(productId);
+        setProduct(response);
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+  }, []);
+
   return (
     <Box className="productDetailsPage">
       <Box className="pageWrapper">

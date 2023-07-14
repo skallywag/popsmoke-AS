@@ -98,8 +98,9 @@ const LoginPage: React.FC = () => {
         ) : (
           products.map((item) => {
             const query = qs.stringify({
-              product: item.id,
+              productId: item.id,
             });
+
             return (
               <ForSaleCard
                 key={item.id}

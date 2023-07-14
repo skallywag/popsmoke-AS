@@ -17,4 +17,11 @@ export const productService = {
     );
     return response.data;
   },
+
+  getProductById: async (id: string) => {
+    const response = await axios.get(
+      `http://localhost:8080/api/product/product-details/${id}`
+    );
+    return response.data;
+  },
 };

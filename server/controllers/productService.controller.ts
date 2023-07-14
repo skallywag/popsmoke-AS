@@ -38,4 +38,17 @@ export const ProductController = {
       res.status(400).send(error);
     }
   },
+  getProductById: async (req: any, res: any) => {
+    const { productId } = req.params;
+    const id = Number(productId);
+
+    try {
+      const response = await db.sequelize.query(
+        `SELECT * FROM product WHERE id = '${id}'`
+      );
+      res.status(200).send(response[0]);
+    } catch (error) {
+      res.status(400).send(error);
+    }
+  },
 };
