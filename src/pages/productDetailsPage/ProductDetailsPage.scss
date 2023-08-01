@@ -6,7 +6,15 @@
     display: flex;
     justify-content: space-evenly;
     padding: 14px 0;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     border-bottom: 2px solid darkorange;
+  }
+  .productWindow {
+    display: flex;
+    overflow-x: auto;
+    gap: 24px;
+    width: 100%;
+    overflow-y: hidden;
+    padding: 10px;
   }
 }

@@ -1,0 +1,15 @@
+.productCarousel {
+  .rightArrow {
+    position: absolute;
+    top: 150px;
+    right: 0;
+    padding: 6px;
+  }
+  .leftArrow {
+    position: absolute;
+    top: 150px;
+    left: 0;
+    padding: 6px;
+    z-index: 1;
+  }
+}

@@ -44,7 +44,7 @@ export const UserController = {
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt);
         const createUser = await db.sequelize
-          .query(`INSERT INTO operators(firstname, lastname, email, password, username)
+          .query(`INSERT INTO operators("firstName", "lastName", email, password, "userName")
           VALUES('${firstName}', '${lastName}', '${email}', '${hash}', '${userName}')
           RETURNING id, firstname
         `);

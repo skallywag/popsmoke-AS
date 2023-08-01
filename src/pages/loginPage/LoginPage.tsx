@@ -18,27 +18,32 @@ import { router } from "../../router";
 import { setLogin } from "../../state/appSlice";
 import "./LoginPage.scss";
 import { userService } from "../../api/userService/userService";
+import { useLocation } from "react-router-dom";
 
 type FormData = {
   email: string;
   password: string;
 };
 const LoginPage: React.FC = () => {
+  const { state } = useLocation();
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const loginDispatch = useAppDispatch();
   const {
     register,
-    setValue,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
+
+  function handleLoginRoute() {
+    state === null ? router.navigate("/") : router.navigate(state.forward);
+  }
 
   const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
     try {
       const response = await userService.userLogin(data);
       localStorage.setItem("user", JSON.stringify(response));
       loginDispatch(setLogin(true));
-      router.navigate("/").catch(console.error);
+      handleLoginRoute();
     } catch (error) {
       toast(error.response.data);
     }
