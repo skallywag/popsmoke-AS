@@ -24,4 +24,10 @@ export const productService = {
     );
     return response.data;
   },
+  updatePageView: async (id: number) => {
+    const response = await axios.post(
+      `http://localhost:8080/api/product/update/views/${id}`
+    );
+    return response.data;
+  },
 };

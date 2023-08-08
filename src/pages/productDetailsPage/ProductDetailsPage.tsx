@@ -7,7 +7,7 @@ import { productService } from "../../api/productService/productService";
 import themes from "../../themes/themes.module.scss";
 import { Box, Button, Text, Divider } from "@chakra-ui/react";
 import { router } from "../../router";
-import { AiOutlinePhone } from "react-icons/ai";
+import { AiOutlinePhone, AiFillHeart } from "react-icons/ai";
 import { useLocation, useNavigate } from "react-router-dom";
 import qs from "query-string";
 import "./ProductDetailsPage.scss";
@@ -20,6 +20,16 @@ const ProductDetailsPage: React.FC = () => {
   const [product, setProduct] = useState<Product>();
   const { productId } = qs.parse(location.search);
   const { isLoggedIn } = useAppSelector((state: RootState) => state.setLogin);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        await productService.updatePageView(productId);
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -52,9 +62,18 @@ const ProductDetailsPage: React.FC = () => {
         </Box>
 
         <Box className="productInfo">
-          <Text fontWeight={"extrabold"} fontSize={"30px"}>
-            {product?.title}
-          </Text>
+          <Box display={"flex"} justifyContent={"space-between"}>
+            <Text fontWeight={"extrabold"} fontSize={"30px"}>
+              {product?.title}
+            </Text>
+            {isLoggedIn && (
+              <AiFillHeart
+                onClick={() => handleAddFavororite()}
+                fontSize={30}
+                color={themes.primaryOrange}
+              />
+            )}
+          </Box>
           <Text fontSize={"22px"} fontWeight={"bold"}>
             ${product?.salePrice}
           </Text>
@@ -80,12 +99,17 @@ const ProductDetailsPage: React.FC = () => {
             justifyContent={"space-around"}
           >
             <Button color={themes.primaryGray} type="button">
-              <AiOutlinePhone fontSize={30} style={{ paddingRight: "4px" }} />{" "}
+              <AiOutlinePhone
+                fontSize={30}
+                color={themes.primaryOrange}
+                style={{ paddingRight: "4px" }}
+              />{" "}
               {product?.phoneNumber}
             </Button>
             <Button color={themes.primaryGray} type="button">
               <HiOutlineMailOpen
                 fontSize={30}
+                color={themes.primaryOrange}
                 style={{ paddingRight: "4px" }}
               />{" "}
               {product?.email}
